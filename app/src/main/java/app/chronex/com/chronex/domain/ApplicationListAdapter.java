@@ -2,10 +2,13 @@ package app.chronex.com.chronex.domain;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import java.util.List;
@@ -38,7 +41,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
     @Override
     public void onBindViewHolder(ItemHolder holder, int position) {
         Application app = appList.get(position);
+//        To Do Shto foton edhe Checkboxin
         holder.applicationName.setText(app.getName());
+        holder.applicationName.setSelected(app.isSelected());
     }
 
     @Override
@@ -47,7 +52,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder {
-        protected TextView applicationName;
+        protected SwitchCompat applicationName;
         protected ImageView appThumbnail;
 
         public ItemHolder(View view) {

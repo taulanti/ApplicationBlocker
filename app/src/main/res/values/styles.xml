@@ -6,6 +6,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSwitchThumbNormal">#186417</item>
+        <item name="colorControlActivated">#186417</item>
+        <!-- Inactive thumb color -->
+        <!-- Inactive track color(30% transparency) -->
+        <item name="android:colorForeground">#186417</item>
     </style>
 
 </resources>

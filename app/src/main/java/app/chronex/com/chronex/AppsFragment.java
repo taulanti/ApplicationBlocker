@@ -32,19 +32,14 @@ public class AppsFragment extends Fragment {
         {
             add(new Application("asasaassa",false));
             add(new Application("adadasdas",false));
-            add(new Application("qwewqe",false));
+            add(new Application("qwewqe",true));
             add(new Application("12312321312",false));
             add(new Application("a",false));
-            add(new Application("b",false));
+            add(new Application("b",true));
             add(new Application("a",false));
             add(new Application("a",false));
         }
     };
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Nullable
     @Override
@@ -53,19 +48,10 @@ public class AppsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         adapter = new ApplicationListAdapter(view.getContext(), applicationList);
 
-//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         return view;
-
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        adapter.notifyDataSetChanged();
     }
 }
 
