@@ -7,9 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextSwitcher;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -22,10 +19,10 @@ import app.chronex.com.chronex.R;
 public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationListAdapter.ItemHolder> {
 
     private Context mContext;
-    private List<Application> appList;
+    private List<ApplicationItem> appList;
 
 
-    public ApplicationListAdapter(Context mContext, List<Application> appList) {
+    public ApplicationListAdapter(Context mContext, List<ApplicationItem> appList) {
         this.mContext = mContext;
         this.appList = appList;
     }
@@ -40,10 +37,11 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
 
     @Override
     public void onBindViewHolder(ItemHolder holder, int position) {
-        Application app = appList.get(position);
+        ApplicationItem app = appList.get(position);
 //        To Do Shto foton edhe Checkboxin
         holder.applicationName.setText(app.getName());
         holder.applicationName.setSelected(app.isSelected());
+        holder.appThumbnail.setImageDrawable(app.getIcon());
     }
 
     @Override
