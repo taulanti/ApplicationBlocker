@@ -1,5 +1,7 @@
 package app.chronex.com.chronex;
 
+import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,32 +30,37 @@ public class AppsFragment extends Fragment {
 
 
 
-    private List<ApplicationItem> applicationList = new ArrayList<ApplicationItem>(){
-        {
-            add(new ApplicationItem("asasaassa",false));
-            add(new ApplicationItem("adadasdas",false));
-            add(new ApplicationItem("qwewqe",true));
-            add(new ApplicationItem("12312321312",false));
-            add(new ApplicationItem("a",false));
-            add(new ApplicationItem("b",true));
-            add(new ApplicationItem("a",false));
-            add(new ApplicationItem("a",false));
-        }
-    };
+    private List<ApplicationItem> applicationList = new ArrayList<ApplicationItem>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_apps, container, false);
         recyclerView = view.findViewById(R.id.recycler_view);
-        ApplicationLoader loader = ApplicationLoader.load(view.getContext().getPackageManager());
-        applicationList = loader.get();
+
+
+        loadApplications(view.getContext().getPackageManager());
         adapter = new ApplicationListAdapter(view.getContext(), applicationList);
-        applicationList = loader.get();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         return view;
+    }
+
+     public void loadApplications(final PackageManager packageManager){
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                ApplicationLoader loader = ApplicationLoader.load(packageManager);
+                applicationList.addAll(loader.get());
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                adapter.notifyDataSetChanged();
+            }
+        }.execute();
     }
 }
 

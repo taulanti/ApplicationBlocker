@@ -31,11 +31,17 @@ public class ApplicationLoader {
     }
 
     public List<ApplicationItem> get() {
+        if(!applicationItemList.isEmpty())
+            return applicationItemList;
+
         List<ApplicationInfo> packages = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
         for(ApplicationInfo a : packages){
-            String appName = packageManager.getApplicationLabel(a).toString();
-            Drawable icon = packageManager.getApplicationIcon(a);
-            applicationItemList.add(new ApplicationItem(appName, false, icon));
+            if(packageManager.getLaunchIntentForPackage(a.packageName) != null){
+                String appName = packageManager.getApplicationLabel(a).toString();
+                Drawable icon = packageManager.getApplicationIcon(a);
+                applicationItemList.add(new ApplicationItem(appName, false, icon));
+            }
+
         }
 
         return applicationItemList;

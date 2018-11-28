@@ -38,9 +38,8 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
     @Override
     public void onBindViewHolder(ItemHolder holder, int position) {
         ApplicationItem app = appList.get(position);
-//        To Do Shto foton edhe Checkboxin
-        holder.applicationName.setText(app.getName());
-        holder.applicationName.setSelected(app.isSelected());
+        holder.appSwitch.setText(app.getName());
+        holder.appSwitch.setSelected(app.isSelected());
         holder.appThumbnail.setImageDrawable(app.getIcon());
     }
 
@@ -50,12 +49,12 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder {
-        protected SwitchCompat applicationName;
+        protected SwitchCompat appSwitch;
         protected ImageView appThumbnail;
 
         public ItemHolder(View view) {
             super(view);
-            applicationName = view.findViewById(R.id.app_name);
+            appSwitch = view.findViewById(R.id.app_switch);
             appThumbnail = view.findViewById(R.id.appThumbnail);
         }
     }
