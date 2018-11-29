@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import app.chronex.com.chronex.R;
+import app.chronex.com.chronex.persistence.AppDatabase;
 
 /**
  * Created by paradigm on 11/26/2018.
@@ -36,10 +37,23 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
     }
 
     @Override
-    public void onBindViewHolder(ItemHolder holder, int position) {
-        ApplicationItem app = appList.get(position);
+    public void onBindViewHolder(final ItemHolder holder, int position) {
+        //TODO reafactor database queries
+        final ApplicationItem app = appList.get(position);
+        final AppDatabase database = AppDatabase.getAppDatabase(this.mContext);
         holder.appSwitch.setText(app.getName());
-        holder.appSwitch.setSelected(app.isSelected());
+        holder.appSwitch.setChecked(app.isSelected());
+        holder.appSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SwitchCompat s = (SwitchCompat) v;
+                if(s.isChecked())
+                    database.applicationNameDao().insert(new ApplicationName(s.getText().toString()));
+                else
+                    database.applicationNameDao().delete(new ApplicationName(s.getText().toString()));
+                app.setSelected(s.isChecked());
+            }
+        });
         holder.appThumbnail.setImageDrawable(app.getIcon());
     }
 

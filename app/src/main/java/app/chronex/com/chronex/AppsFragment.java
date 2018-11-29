@@ -1,5 +1,6 @@
 package app.chronex.com.chronex;
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class AppsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
 
 
-        loadApplications(view.getContext().getPackageManager());
+        loadApplications(view.getContext());
         adapter = new ApplicationListAdapter(view.getContext(), applicationList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -47,11 +48,11 @@ public class AppsFragment extends Fragment {
         return view;
     }
 
-     public void loadApplications(final PackageManager packageManager){
+     public void loadApplications(final Context context){
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                ApplicationLoader loader = ApplicationLoader.load(packageManager);
+                ApplicationLoader loader = ApplicationLoader.load(context);
                 applicationList.addAll(loader.get());
                 return null;
             }

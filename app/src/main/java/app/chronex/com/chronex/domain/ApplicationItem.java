@@ -2,15 +2,20 @@ package app.chronex.com.chronex.domain;
 
 import android.graphics.drawable.Drawable;
 
+
 /**
  * Created by paradigm on 11/26/2018.
  */
 
 public class ApplicationItem {
 
+
     private String name;
     private boolean isSelected;
     private Drawable icon;
+
+    public ApplicationItem() {
+    }
 
     public ApplicationItem(String appName, boolean b, Drawable icon) {
         this.icon = icon;
