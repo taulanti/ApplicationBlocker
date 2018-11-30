@@ -48,9 +48,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
             public void onClick(View v) {
                 SwitchCompat s = (SwitchCompat) v;
                 if(s.isChecked())
-                    database.applicationNameDao().insert(new ApplicationName(s.getText().toString()));
+                    database.applicationNameDao().insert(new ApplicationDetails(s.getText().toString(), app.getPackageName()));
                 else
-                    database.applicationNameDao().delete(new ApplicationName(s.getText().toString()));
+                    database.applicationNameDao().delete(new ApplicationDetails(s.getText().toString()));
                 app.setSelected(s.isChecked());
             }
         });

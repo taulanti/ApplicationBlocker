@@ -13,14 +13,14 @@ public class ApplicationItem {
     private String name;
     private boolean isSelected;
     private Drawable icon;
+    private String packageName;
 
-    public ApplicationItem() {
-    }
 
-    public ApplicationItem(String appName, boolean b, Drawable icon) {
+    public ApplicationItem(String appName, String packageName, boolean b, Drawable icon) {
         this.icon = icon;
         isSelected = b;
         name = appName;
+        this.packageName = packageName;
     }
 
     public ApplicationItem(String name, boolean isSelected) {
@@ -50,5 +50,13 @@ public class ApplicationItem {
 
     public void setIcon(Drawable icon) {
         this.icon = icon;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
     }
 }

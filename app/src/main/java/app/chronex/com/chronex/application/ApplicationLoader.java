@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import app.chronex.com.chronex.domain.ApplicationItem;
-import app.chronex.com.chronex.domain.ApplicationName;
+import app.chronex.com.chronex.domain.ApplicationDetails;
 import app.chronex.com.chronex.persistence.AppDatabase;
 
 /**
@@ -37,7 +37,7 @@ public class ApplicationLoader {
     public List<ApplicationItem> get() {
         //TOOD merre listen prej dbs
         AppDatabase database = AppDatabase.getAppDatabase(context);
-        List<ApplicationName> list = Arrays.asList(database.applicationNameDao().getAll());
+        List<ApplicationDetails> list = Arrays.asList(database.applicationNameDao().getAll());
         if(!applicationItemList.isEmpty())
             return applicationItemList;
         PackageManager packageManager = context.getPackageManager();
@@ -45,11 +45,19 @@ public class ApplicationLoader {
         for(ApplicationInfo a : packages){
             if(packageManager.getLaunchIntentForPackage(a.packageName) != null){
                 String appName = packageManager.getApplicationLabel(a).toString();
+                String appPackage = a.packageName;
                 Drawable icon = packageManager.getApplicationIcon(a);
-                applicationItemList.add(new ApplicationItem(appName, list.contains(new ApplicationName(appName)), icon));
+                applicationItemList.add(new ApplicationItem(appName, appPackage, list.contains(new ApplicationDetails(appName)), icon));
             }
         }
 
         return applicationItemList;
+    }
+
+    public List<ApplicationDetails> getApplicationDetails() {
+        //TOOD merre listen prej dbs
+        AppDatabase database = AppDatabase.getAppDatabase(context);
+        List<ApplicationDetails> list = Arrays.asList(database.applicationNameDao().getAll());
+        return list;
     }
 }

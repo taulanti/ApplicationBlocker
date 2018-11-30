@@ -5,9 +5,9 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import app.chronex.com.chronex.domain.ApplicationName;
+import app.chronex.com.chronex.domain.ApplicationDetails;
 
-@Database(entities = {ApplicationName.class}, version = 1, exportSchema = false)
+@Database(entities = {ApplicationDetails.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
