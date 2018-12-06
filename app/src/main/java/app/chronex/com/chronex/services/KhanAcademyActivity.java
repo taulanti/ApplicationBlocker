@@ -14,7 +14,6 @@ public class KhanAcademyActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.locked_app);
         init();
     }
 
