@@ -3,6 +3,7 @@ package app.chronex.com.chronex.services;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 public class PhoneBootReciever extends BroadcastReceiver {
     /* Recieves events when phone boot is completed */
@@ -11,6 +12,7 @@ public class PhoneBootReciever extends BroadcastReceiver {
 
         Intent myIntent = new Intent(context,AppBlockerService.class);
         context.startService(myIntent);
+        Log.i("Autostart", "started(-)  (-)");
 
 
     }

@@ -21,6 +21,7 @@ import java.util.List;
 
 import app.chronex.com.chronex.services.AppBlockerService;
 
+import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.PACKAGE_USAGE_STATS;
 
 public class ChronexActivity extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class ChronexActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Dexter.withActivity(this)
-                .withPermissions(Manifest.permission.RECEIVE_BOOT_COMPLETED, PACKAGE_USAGE_STATS)
+                .withPermissions(CAMERA)
                 .withListener(DialogOnAnyDeniedMultiplePermissionsListener.Builder
                         .withContext(this)
                         .withTitle("Camera & audio permission")

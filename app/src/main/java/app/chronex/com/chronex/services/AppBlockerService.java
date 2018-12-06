@@ -23,6 +23,7 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.scottyab.rootbeer.RootBeer;
 
@@ -71,8 +72,11 @@ public class AppBlockerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Toast.makeText(this, "My Service Started", Toast.LENGTH_LONG).show();
         return Service.START_STICKY;
     }
+
+
 
     @Override
     public void onCreate() {
